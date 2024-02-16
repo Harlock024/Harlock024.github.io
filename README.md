@@ -1,4 +1,6 @@
-Harlock024.github.io
+# Harlock024.github.io
+ 
+actividades para la clase de paradigmas
 
-    actividades para la clase de paradigmas
+- [x] calculadora 
 
