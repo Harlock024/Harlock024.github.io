@@ -148,7 +148,7 @@ img {
     background-color: #FFFFFF;
 }
 
-.button-48 span {
+.button-48 a {
     z-index: 1;
     position: relative;
 }
