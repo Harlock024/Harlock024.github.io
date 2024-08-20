@@ -3,7 +3,6 @@ import { Component } from "@angular/core";
 import { FooterComponent } from "./Components/footer/footer.component";
 import { HeaderComponent } from "./Components/header/header.component";
 import { MainComponent } from "./Components/main/main.component";
-import "@fontsource-variable/outfit";
 
 @Component({
   selector: "app-root",
