@@ -1,0 +1,23 @@
+<section class="w-full">
+    <div class="m-10">
+        <h1>Work Experience</h1>
+        <small> A summary of my professional history</small>
+    </div>
+
+    <li *ngFor="let job of workExperience">
+        <div class="flex flex-row gap-2 items-center">
+            <h2>{{ job.position }}</h2>
+            <small>{{ job.startDate }} - {{ job.endDate }}</small>
+        </div>
+
+        <small>{{ job.company }}</small>
+        <div class=""></div>
+        <p>{{ job.description }}</p>
+
+        <ul class="">
+            <li *ngFor="let accomplishment of job.accomplishments">
+                {{ accomplishment }}
+            </li>
+        </ul>
+    </li>
+</section>
