@@ -26,4 +26,10 @@ jobs:
       - name: Test
         run: |
           pnpm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
-
+      - name: build angular, output in dist/cv_project
+        run: | 
+          CI=false pnpm run build
+          
+      - name: show dir 
+        run: |
+          ls -la dist      
