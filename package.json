@@ -1,6 +1,6 @@
 {
   "name": "cv-project",
-  "type": "commonjs",
+  "type": "module",
   "version": "0.0.0",
   "scripts": {
     "dev": "ng serve --host 0.0.0.0",
@@ -10,7 +10,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "test:cli": "pnpm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI",
-    "hola":"hola mundo"
+    "hola": "hola mundo"
   },
   "private": true,
   "dependencies": {
