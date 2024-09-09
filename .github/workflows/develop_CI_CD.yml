@@ -49,7 +49,7 @@ jobs:
           docker exec serving_base ls -la /usr/local/apache2/htdocs
       - name: Build the Custom Docker image
         run: docker commit --change "ENV CV_PROJECT ${{secrets.MODEL_NAME}}"
-            serving_base ${{secrets.DOCKER_USER}}/${{secrets.MODEL_NAME}}:${github.sha}} 
+            serving_base ${{secrets.DOCKER_USER}}/${{secrets.MODEL_NAME}}:${{github.sha}} 
       - name: show docker images
         run: docker images
       - name: docker login
