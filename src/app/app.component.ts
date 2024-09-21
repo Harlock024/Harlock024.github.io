@@ -4,11 +4,17 @@ import { Component } from "@angular/core";
 import { HeaderComponent } from "./Components/header/header.component";
 import { WorkExperienceComponent } from "./Components/work-experience/work-experience.component";
 import { EducationComponent } from "./Components/education/education.component";
+import { SkillComponent } from "./Components/skill/skill.component";
 
 @Component({
   selector: "app-root",
   standalone: true,
-  imports: [HeaderComponent, WorkExperienceComponent, EducationComponent],
+  imports: [
+    HeaderComponent,
+    WorkExperienceComponent,
+    EducationComponent,
+    SkillComponent,
+  ],
   templateUrl: "./app.component.html",
 })
 export class AppComponent {
