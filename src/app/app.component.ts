@@ -1,6 +1,5 @@
 import { Component } from "@angular/core";
 // import { RouterOutlet } from "@angular/router";
-
 import { HeaderComponent } from "./Components/header/header.component";
 import { WorkExperienceComponent } from "./Components/work-experience/work-experience.component";
 import { EducationComponent } from "./Components/education/education.component";
