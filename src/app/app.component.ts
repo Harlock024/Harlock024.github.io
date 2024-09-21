@@ -6,6 +6,7 @@ import { EducationComponent } from "./Components/education/education.component";
 import { ArchivementsComponent } from "./Components/archivements/archivements.component";
 import { SkillComponent } from "./Components/skill/skill.component";
 import { LenguagesComponent } from "./Components/lenguages/lenguages.component";
+import { InterestsComponent } from "./Components/interests/interests.component";
 
 @Component({
   selector: "app-root",
@@ -18,6 +19,7 @@ import { LenguagesComponent } from "./Components/lenguages/lenguages.component";
     ArchivementsComponent,
     SkillComponent,
     LenguagesComponent,
+    InterestsComponent,
   ],
   templateUrl: "./app.component.html",
 })
