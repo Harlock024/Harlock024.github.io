@@ -1,0 +1,14 @@
+<section class="">
+    <h1 class="text-2xl">Logros</h1>
+    <div>
+        <ul>
+            <li
+                class="text-gray-400 my-5"
+                *ngFor="let archivement of Archivements"
+            >
+                <div class="font-bold">{{ archivement.title }}:</div>
+                <div>{{ archivement.description }}</div>
+            </li>
+        </ul>
+    </div>
+</section>

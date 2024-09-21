@@ -4,7 +4,9 @@ import { Component } from "@angular/core";
 import { HeaderComponent } from "./Components/header/header.component";
 import { WorkExperienceComponent } from "./Components/work-experience/work-experience.component";
 import { EducationComponent } from "./Components/education/education.component";
+import { ArchivementsComponent } from "./Components/archivements/archivements.component";
 import { SkillComponent } from "./Components/skill/skill.component";
+
 
 @Component({
   selector: "app-root",
@@ -13,6 +15,7 @@ import { SkillComponent } from "./Components/skill/skill.component";
     HeaderComponent,
     WorkExperienceComponent,
     EducationComponent,
+    ArchivementsComponent,
     SkillComponent,
   ],
   templateUrl: "./app.component.html",
