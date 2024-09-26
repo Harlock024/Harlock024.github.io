@@ -1,0 +1,35 @@
+<section>
+    <div class="flex flex-col w-full p-4">
+        <div>
+            <h1 class="text-2xl">Experiencia de Trabajo</h1>
+        </div>
+        <div>
+            <ul>
+                <li
+                    class="border-b border-white py-4 w-full"
+                    *ngFor="let job of workExperience"
+                >
+                    <div class="flex flex-col my-4">
+                        <div class="text-xl">{{ job.position }}</div>
+                        <div class="text-gray-400">{{ job.company }}</div>
+                        <div class="text-gray-400">
+                            {{ job.startDate }} - {{ job.endDate }}
+                        </div>
+                        <div class="text-gray-400">
+                            {{ job.city }}, {{ job.country }}
+                        </div>
+                    </div>
+                    <ul>
+                        <div class="mt-4">Logros</div>
+                        <li
+                            class="list-disc list-inside mb-3 text-gray-400"
+                            *ngFor="let accomplishment of job.accomplishments"
+                        >
+                            {{ accomplishment }}
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>

@@ -1,5 +1,15 @@
-<main class="flex font-outfit justify-center bg-[#2c2c2c] text-white h-screen">
-    <body class="flex flex-col min-h-screen w-[92%] items-center">
-        <app-header class="w-full"></app-header>
+<main class="flex flex-col justify-center bg-[#2c2c2c] text-white">
+    <app-header class="w-full"></app-header>
+    <body class="grid grid-cols-2 w-[92%]">
+        <div>
+            <app-work-experience class="w-full"></app-work-experience>
+            <app-education class="w-full"></app-education>
+        </div>
+        <div>
+            <app-skill class="w-full"></app-skill>
+            <app-archivements class="w-full"></app-archivements>
+            <app-lenguages class="w-full"></app-lenguages>
+            <app-interests class="w-full"></app-interests>
+        </div>
     </body>
 </main>

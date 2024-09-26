@@ -32,9 +32,6 @@ importers:
       '@angular/router':
         specifier: ^18.2.0
         version: 18.2.0(@angular/common@18.2.0(@angular/core@18.2.0(rxjs@7.8.1)(zone.js@0.14.10))(rxjs@7.8.1))(@angular/core@18.2.0(rxjs@7.8.1)(zone.js@0.14.10))(@angular/platform-browser@18.2.0(@angular/animations@18.2.0(@angular/core@18.2.0(rxjs@7.8.1)(zone.js@0.14.10)))(@angular/common@18.2.0(@angular/core@18.2.0(rxjs@7.8.1)(zone.js@0.14.10))(rxjs@7.8.1))(@angular/core@18.2.0(rxjs@7.8.1)(zone.js@0.14.10)))(rxjs@7.8.1)
-      '@fontsource-variable/outfit':
-        specifier: ^5.0.14
-        version: 5.0.14
       rxjs:
         specifier: ~7.8.0
         version: 7.8.1
@@ -1140,9 +1137,6 @@ packages:
     engines: {node: '>=18'}
     cpu: [x64]
     os: [win32]
-
-  '@fontsource-variable/outfit@5.0.14':
-    resolution: {integrity: sha512-lAUC1ieCEer+EOi8s/UmWjaiwgGH6k8SMXHsN3BZ+G4GLy+8BRtcAgTHzM/mrl9kJKOPjsLKhM+T0MHArNAXeA==}
 
   '@inquirer/checkbox@2.4.7':
     resolution: {integrity: sha512-5YwCySyV1UEgqzz34gNsC38eKxRBtlRDpJLlKcRtTjlYA/yDKuc1rfw+hjw+2WJxbAZtaDPsRl5Zk7J14SBoBw==}
@@ -5537,8 +5531,6 @@ snapshots:
 
   '@esbuild/win32-x64@0.23.0':
     optional: true
-
-  '@fontsource-variable/outfit@5.0.14': {}
 
   '@inquirer/checkbox@2.4.7':
     dependencies:
