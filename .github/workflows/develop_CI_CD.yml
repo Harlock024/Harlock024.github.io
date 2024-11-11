@@ -37,6 +37,9 @@ jobs:
           openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
           -keyout certs/selfsigned.key -out certs/selfsigned.crt -subj "/CN=localhost"
 
+      - name: List generated certificates
+        run: ls -la certs
+
       - name: Download and run Nginx image, with HTTPS configuration
         run: |
           docker run -d -p 443:443 --name serving_base nginx
@@ -46,6 +49,10 @@ jobs:
           docker cp dist/cv_project/browser/. serving_base:/usr/share/nginx/html
           docker cp certs/selfsigned.crt serving_base:/etc/nginx/selfsigned.crt
           docker cp certs/selfsigned.key serving_base:/etc/nginx/selfsigned.key
+
+      - name: Verify files in Nginx container
+        run: |
+          docker exec serving_base ls -la /etc/nginx/selfsigned.*
 
       - name: Create Nginx configuration file
         run: |
@@ -75,9 +82,6 @@ jobs:
 
       - name: Show Nginx config
         run: docker exec serving_base cat /etc/nginx/conf.d/default.conf
-
-      - name: Verify certificate files
-        run: docker exec serving_base ls -la /etc/nginx/selfsigned.*
 
       - name: Show Nginx error log
         run: docker exec serving_base cat /var/log/nginx/error.log
