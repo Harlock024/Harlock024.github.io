@@ -50,10 +50,6 @@ jobs:
           docker cp certs/selfsigned.crt serving_base:/etc/nginx/selfsigned.crt
           docker cp certs/selfsigned.key serving_base:/etc/nginx/selfsigned.key
 
-      - name: Verify files in Nginx container
-        run: |
-          docker exec serving_base ls -la /etc/nginx/selfsigned.*
-
       - name: Create Nginx configuration file
         run: |
           echo "
