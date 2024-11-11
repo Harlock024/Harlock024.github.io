@@ -77,14 +77,5 @@ jobs:
       - name: Reload Nginx
         run: docker exec serving_base nginx -s reload
 
-      - name: List configuration and certificate files
-        run: docker exec serving_base ls -la /etc/nginx /etc/nginx/conf.d
-
-      - name: Show Nginx config
-        run: docker exec serving_base cat /etc/nginx/conf.d/default.conf
-
-      - name: Show Nginx error log
-        run: docker exec serving_base cat /var/log/nginx/error.log
-
       - name: Verify HTTPS server
         run: curl -kI https://localhost
