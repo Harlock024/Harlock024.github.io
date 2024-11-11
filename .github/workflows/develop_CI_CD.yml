@@ -1,10 +1,10 @@
 name: CI Angular app through GitHub Actions
 
-on: 
+on:
   push:
-    branches: [ "master"]
+    branches: ["master"]
   pull_request:
-    branches: [ "master"]
+    branches: ["master"]
 
 jobs:
   build:
@@ -27,53 +27,73 @@ jobs:
         run: |
           pnpm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
 
-      - name: build angular, output in dist/cv_project
-        run: | 
+      - name: Build Angular, output in dist/cv_project
+        run: |
           CI=false pnpm run build
-      - name: show dir
-        run: |
-          ls -la dist/cv_project/browser
 
-      - name: Download, run httpd image, container name serving_base, map to port 8080
-        run: | 
-          docker run -d -p 8080:80 --name serving_base httpd
-      - name: docker ps
+      - name: Generate self-signed certificate
         run: |
-           docker ps
-      - name: cp angular build to container
-        run: | 
-          docker cp dist/cv_project/browser/. serving_base:/usr/local/apache2/htdocs
-         
+          mkdir -p certs
+          openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+          -keyout certs/selfsigned.key -out certs/selfsigned.crt -subj "/CN=localhost"
 
-      - name: list container
-        run: | 
-          docker exec serving_base ls -la /usr/local/apache2/htdocs
-          
+      - name: List generated certificates
+        run: ls -la certs
+
+      - name: Download and run Nginx image, with HTTPS configuration
+        run: |
+          docker run -d -p 443:443 --name serving_base nginx
+
+      - name: Copy Angular build and certificates to container
+        run: |
+          docker cp dist/cv_project/browser/. serving_base:/usr/share/nginx/html
+          docker cp certs/selfsigned.crt serving_base:/etc/nginx/selfsigned.crt
+          docker cp certs/selfsigned.key serving_base:/etc/nginx/selfsigned.key
+
+      - name: Create Nginx configuration file
+        run: |
+          echo "
+          server {
+              listen 443 ssl;
+              ssl_certificate /etc/nginx/selfsigned.crt;
+              ssl_certificate_key /etc/nginx/selfsigned.key;
+              location / {
+                  root /usr/share/nginx/html;
+                  index index.html index.htm;
+              }
+          }" > nginx.conf
+
+      - name: Copy Nginx configuration to container
+        run: |
+          docker cp nginx.conf serving_base:/etc/nginx/conf.d/default.conf
+
+      - name: Wait for Nginx to start
+        run: sleep 5
+
+      - name: Reload Nginx
+        run: docker exec serving_base nginx -s reload
+
+      - name: Verify HTTPS server
+        run: curl -kI https://localhost
+
       - name: Build the custom Docker image
         run: |
-            docker commit --change "ENV MODEL_NAME ${{secrets.MODEL_NAME}}" \
-            --change "EXPOSE 8080" \
-             serving_base ${{secrets.DOCKER_USER}}/${{secrets.MODEL_NAME}}:${{github.sha}}
-            
-      - name: show docker images
+          docker commit --change "ENV MODEL_NAME ${{secrets.MODEL_NAME}}" \
+          --change "EXPOSE 443" \
+          serving_base ${{secrets.DOCKER_USER}}/${{secrets.MODEL_NAME}}:${{github.sha}}
+
+      - name: Show docker images
         run: docker images
-        
-      - name: docker login
-        env: 
+
+      - name: Docker login
+        env:
           DOCKER_USER: ${{secrets.DOCKER_USER}}
           DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-        run: | 
+        run: |
           docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-          
+
       - name: Docker Push
         run: docker push ${{secrets.DOCKER_USER}}/${{secrets.MODEL_NAME}}:${{github.sha}}
 
       - name: Verify the server is running
-        run: |
-          curl -I http://localhost:8080
-          
-  
-        
-    
-        
-
+        run: docker ps
